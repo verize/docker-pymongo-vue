@@ -3,6 +3,7 @@
 /build/
 /dist/*
 /var/*
+/src/__pycache__/*
 /temp/*
 /node_modules/
 /.web-server-pid
