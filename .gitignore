@@ -1,0 +1,44 @@
+# -- Python Flask ---
+
+/build/
+/dist/*
+/var/*
+/temp/*
+/node_modules/
+/.web-server-pid
+/venv/*
+/PyMongoVue.egg-info/*
+.env
+
+# -- NPM and Yarn Package Managers -------------------
+yarn-error.log
+
+
+# -- Editors -----------------------------------------
+
+# sublimetext
+/*.sublime-project
+*.sublime-workspace
+
+# -- Operating Systems ------------------------------
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.*
+!.gitignore
+!.bowerrc
+!.circleci
+*~
+
+# Mac OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
