@@ -4,12 +4,18 @@ import os
 from eve import Eve
 from flask import Response, json
 from src.auth import BCryptAuth
+from flask import render_template
 
-app = Eve(auth=BCryptAuth, settings='config_dev.py')
+app = Eve(__name__, auth=BCryptAuth, settings='config_dev.py', static_folder='build')
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
+    return render_template('index.html')
+
+
+@app.route('/status', methods=['GET'])
+def status():
     data = json.dumps({
         'success': True,
         'version': '1.0'
