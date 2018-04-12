@@ -9,6 +9,7 @@
 /.web-server-pid
 /venv/*
 /PyMongoVue.egg-info/*
+.egg*
 .env
 
 # -- NPM and Yarn Package Managers -------------------
