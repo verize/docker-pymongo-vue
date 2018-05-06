@@ -1,10 +1,11 @@
 # -- Python Flask ---
 
-/build/
+/build/*
 /dist/*
 /var/*
 /src/__pycache__/*
 /temp/*
+/.idea
 /node_modules/
 /.web-server-pid
 /venv/*
@@ -31,11 +32,9 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Linux
-.*
 !.gitignore
 !.bowerrc
 !.circleci
-*~
 
 # Mac OS X
 .DS_Store

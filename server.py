@@ -5,6 +5,7 @@ from eve import Eve
 from flask import Response, json
 from src.auth import BCryptAuth
 from flask import render_template
+from src.swagger import init_swagger
 
 app = Eve(
     __name__,
@@ -13,6 +14,8 @@ app = Eve(
     static_folder='./build',
     template_folder="./build"
 )
+with app.app_context():
+    init_swagger()
 
 
 @app.route('/status', methods=['GET'])

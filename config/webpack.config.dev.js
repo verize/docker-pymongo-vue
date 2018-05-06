@@ -45,6 +45,8 @@ const webpackConfig = {
          ]
      },
      plugins: [
+         new webpack.NamedModulesPlugin(),
+         new webpack.HotModuleReplacementPlugin(),
          new CleanWebpackPlugin(
              [BUILD_DIR],
              {
@@ -73,6 +75,10 @@ const webpackConfig = {
          colors: true
      },
      devtool: 'source-map',
+     devServer: {
+       contentBase: BUILD_DIR,
+       hot: true
+     },
      optimization: {
      minimizer: [
       new UglifyJsPlugin({

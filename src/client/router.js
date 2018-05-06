@@ -6,7 +6,7 @@ import VueResource from 'vue-resource'
 import VueConfigManager from "./plugins/VueConfigManager";
 import config from './config';
 
-import Home from './components/Home.vue'
+import Layout from './components/Layout.vue'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -18,7 +18,7 @@ const router = new VueRouter({
     mode: 'history',
     saveScrollPosition: false,
     routes: [
-        { name: 'homepage', path: '/', component: Home },
+        { name: 'homepage', path: '/', component: Layout },
     ]
 });
 

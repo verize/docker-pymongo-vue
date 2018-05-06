@@ -5,7 +5,7 @@
 
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
-MONGO_DBNAME = ''
+MONGO_DBNAME = 'apitest'
 MONGO_USERNAME = ''
 MONGO_PASSWORD = ''
 URL_PREFIX = 'api'

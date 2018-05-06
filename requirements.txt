@@ -1,3 +1,5 @@
+flask
 eve
 py-bcrypt
 bcrypt
+eve-swagger

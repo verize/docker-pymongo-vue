@@ -2,13 +2,14 @@
 
 **An open source stack:** Python3 + Flask/Eve framework + MongoDB + Webpack4 + Vue.js-ES6 client
 
-- RESTful API
+- RESTful API + Swagger Api Docs
+- Authentication
 - NoSQL Storage
-- Javascript-ES6 client
+- Javascript-ES6 client + Webpack
 
 **Author:** Gonzalo Plaza <gonzalo@verize.com>
 
-**Installation:**
+### Installation:
 
 1. Clone repository
 ```
@@ -36,9 +37,12 @@ python server.py
 
 Server will run by default under http://localhost:5000 
 
+###Licensing:
 
-**TODOs:**
-- Improve Vue Component templates
+The code in this project is licensed under [MIT LICENSE](LICENSE). Read file for more information.
+
+###TODOs:
 - Adds Webpack HMR (Hot Module Replacement)
 - Adds SSR (Server Side Rendering) 
 - Enable MongoDB checking, connection
+- Adds Prettier and Python Linters
