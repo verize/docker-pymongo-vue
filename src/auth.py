@@ -18,6 +18,7 @@ from flask import current_app as app
 class BCryptAuth(BasicAuth):
     def check_auth(self, username, password, allowed_roles, resource, method):
         # use Eve's own db driver; no additional connections/resources are used
-        accounts = app.data.driver.db['accounts']
-        account = accounts.find_one({'username': username})
-        return account and bcrypt.hashpw(password, account['password']) == account['password']
+        accounts = app.data.driver.db['users']
+        account = accounts.find_one({'email': username})
+        return account and \
+               bcrypt.hashpw(password, account['password']) == account['password']

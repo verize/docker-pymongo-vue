@@ -2,10 +2,10 @@
 
 import os
 from eve import Eve
-from flask import Response, json
 from src.auth import BCryptAuth
 from flask import render_template
 from src.swagger import init_swagger
+from eve_healthcheck import EveHealthCheck
 
 app = Eve(
     __name__,
@@ -17,19 +17,7 @@ app = Eve(
 with app.app_context():
     init_swagger()
 
-
-@app.route('/status', methods=['GET'])
-def status():
-    data = json.dumps({
-        'success': True,
-        'version': '1.0'
-    })
-
-    return Response(
-        data,
-        status=200,
-        mimetype='application/json'
-    )
+status = EveHealthCheck(app, '/status')
 
 
 @app.route('/', defaults={'path': ''})

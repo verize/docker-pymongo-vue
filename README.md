@@ -37,12 +37,15 @@ python server.py
 
 Server will run by default under http://localhost:5000 
 
-###Licensing:
+### Licensing:
 
 The code in this project is licensed under [MIT LICENSE](LICENSE). Read file for more information.
 
-###TODOs:
+### TODOs:
+
 - Adds Webpack HMR (Hot Module Replacement)
 - Adds SSR (Server Side Rendering) 
-- Enable MongoDB checking, connection
+- Improve Authentication process / roles
+- Installation command
 - Adds Prettier and Python Linters
+- Basic Tests

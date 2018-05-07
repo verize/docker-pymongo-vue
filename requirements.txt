@@ -3,3 +3,4 @@ eve
 py-bcrypt
 bcrypt
 eve-swagger
+eve-healthcheck
