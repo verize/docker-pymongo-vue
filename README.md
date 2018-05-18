@@ -21,6 +21,13 @@ cd py-mongo-vue
 virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
+pip install -r dev-requirements.txt
+
+```
+
+Note: To upgrade Pip requirements, just execute (and follow instructions):
+```
+pip-upgrade
 ```
 
 3. Install client js dependencies, compile assets:
@@ -29,7 +36,22 @@ yarn install && yarn upgrade
 yarn run dev
 ```
 
-4. Run server:
+4. App configuration
+You need to copy .env.dist to .env file (root folder) and set your own parameters
+To generate secret key visit this page: https://randomkeygen.com/
+
+Configuration vars:
+```
+FLASK_ENV=development
+MONGO_HOST=localhost
+MONGO_PORT=27017
+MONGO_DBNAME=''
+MONGO_USERNAME=''
+MONGO_PASSWORD=''
+SECRET_KEY=''
+```
+
+5. Run server:
 ```
 python server.py
 ```

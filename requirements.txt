@@ -1,5 +1,11 @@
-flask
+python-dotenv
+flask>=1.0.0
 eve
+pymongo==3.5.1
+mongoengine
+flask-mongoengine
+flask-debugtoolbar
+six>=1.10.0
 py-bcrypt
 bcrypt
 eve-swagger
