@@ -1,8 +1,3 @@
-# Let's just use the local mongod instance. Edit as needed.
-
-# Please note that MONGO_HOST and MONGO_PORT could very well be left
-# out as they already default to a bare bones local 'mongod' instance.
-
 import os
 from src.resources import users
 from dotenv import load_dotenv
@@ -12,12 +7,14 @@ load_dotenv(verbose=True)
 config_dev = {
     # Eve configuration
     'MONGO_HOST': os.environ['MONGO_HOST'],
-    'MONGO_PORT': os.environ['MONGO_PORT'],
+    'MONGO_PORT': int(os.environ['MONGO_PORT']),
     'MONGO_DBNAME': os.environ['MONGO_DBNAME'],
     'MONGO_USERNAME': os.environ['MONGO_USERNAME'],
     'MONGO_PASSWORD': os.environ['MONGO_PASSWORD'],
     # MongoEngine Configuration
     'MONGODB_SETTINGS': {
+        'host': os.environ['MONGO_HOST'],
+        'port': int(os.environ['MONGO_PORT']),
         'db': os.environ['MONGO_DBNAME'],
         'username': os.environ['MONGO_USERNAME'],
         'password': os.environ['MONGO_PASSWORD'],
@@ -27,7 +24,6 @@ config_dev = {
     'API_VERSION': 'v1',
     # set a 'SECRET_KEY' to enable the Flask session cookies
     'SECRET_KEY': os.environ['SECRET_KEY'],
-    'DEBUG': True,
     'TESTING': True,
     # Enable reads (GET), edits (PATCH), replacements (PUT) and deletes of
     # individual items  (defaults to read-only item access).

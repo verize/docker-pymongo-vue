@@ -3,18 +3,15 @@
 from eve import Eve
 from src.auth import BCryptAuth
 from flask import render_template
-from config.config import get_app_config
+from config.config import get_app_config as app_settings
 from src.swagger import init_swagger
 from eve_healthcheck import EveHealthCheck
 from flask_debugtoolbar import DebugToolbarExtension
 
-
-app_settings = get_app_config()
-
 app = Eve(
     __name__,
     auth=BCryptAuth,
-    settings=app_settings,
+    settings=app_settings(),
     static_folder='./build',
     template_folder="./build"
 )
@@ -34,4 +31,4 @@ def catch_all(path):
 if __name__ == '__main__':
     toolbar = DebugToolbarExtension(app)
     toolbar.init_app(app)
-    app.run()
+    app.run(host='0.0.0.0')

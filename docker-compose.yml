@@ -1,0 +1,30 @@
+version: '2'
+services:
+    mongodb:
+        image: mongo:latest
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./data/db:/data/db        
+        environment:
+            MONGO_DATA_DIR: /data/db
+            MONGO_LOG_DIR: /dev/null
+            MONGODB_USER: '' 
+            MONGODB_PASS: ''
+    python:
+        build: ./python
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./app:/usr/src/app
+            - ./logs/app:/usr/src/app/logs:cached
+        environment:
+            FLASK_ENV: development
+            MONGO_HOST: 'localhost'
+            MONGO_PORT: 27017
+            MONGO_DBNAME: apitest
+            MONGO_USERNAME: ''
+            MONGO_PASSWORD: ''
+            SECRET_KEY: 'vLn5n8b0MfoOEdZB7wJOapK2d0gFcxhe'
+        links:
+            - mongodb

@@ -1,8 +1,6 @@
 # -- Python Flask ---
 
 /build/
-/logs/
-/data/
 /dist/*
 /var/*
 /temp/*
