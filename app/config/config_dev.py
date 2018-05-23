@@ -1,8 +1,6 @@
 import os
 from src.resources import users
-from dotenv import load_dotenv
 
-load_dotenv(verbose=True)
 
 config_dev = {
     # Eve configuration

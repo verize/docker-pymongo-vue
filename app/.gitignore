@@ -4,7 +4,7 @@
 /dist/*
 /var/*
 /temp/*
-/.idea
+/.idea/
 /node_modules/
 /.web-server-pid
 /venv/*

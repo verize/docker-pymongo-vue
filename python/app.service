@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve app
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/usr/src/app
+Environment="PATH=/usr/src/app/venv/bin"
+ExecStart=/usr/src/app/venv/bin/uwsgi --ini app.ini ---uid www-data --gid www-data
+
+[Install]
+WantedBy=multi-user.target

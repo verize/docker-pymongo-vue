@@ -2,9 +2,7 @@ import os
 
 from .config_dev import config_dev
 from .config_prod import config_prod
-from dotenv import load_dotenv
 
-load_dotenv()
 
 
 def get_app_config():

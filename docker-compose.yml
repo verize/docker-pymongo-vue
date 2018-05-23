@@ -1,5 +1,25 @@
-version: '2'
+# Help: https://www.digitalocean.com/community/questions/flask-nginx-uwsgi-ubuntu-tutorial
+# more help_ https://www.caktusgroup.com/blog/2017/03/14/production-ready-dockerfile-your-python-django-app/
+# more help: https://www.digitalocean.com/community/tutorials/how-to-set-up-uwsgi-and-nginx-to-serve-python-apps-on-ubuntu-14-04
+version: '3.3'
 services:
+    python:
+        build:
+            context: ./python
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./app:/usr/src/app:cached
+            - ./logs/app:/usr/src/app/logs:cached
+            - ./python/app.ini:/usr/src/app/app.ini
+            - ./python/app.service:/etc/systemd/app.service
+        restart: always
+        env_file:
+            - .env
+        depends_on:
+            - mongodb
+        entrypoint: uwsgi --plugin wsgi,python3 --ini app.ini
+        #entrypoint: uwsgi --plugin wsgi,python3 --ini app.ini
     mongodb:
         image: mongo:latest
         ports:
@@ -8,23 +28,18 @@ services:
             - ./data/db:/data/db        
         environment:
             MONGO_DATA_DIR: /data/db
-            MONGO_LOG_DIR: /dev/null
-            MONGODB_USER: '' 
-            MONGODB_PASS: ''
-    python:
-        build: ./python
-        ports:
-            - "5000:5000"
+            MONGO_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+            MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
+            MONGO_INITDB_DATABASE: $MONGO_DBNAME
+        restart: always
+    nginx:
+        build:
+            context: ./nginx
         volumes:
-            - ./app:/usr/src/app
-            - ./logs/app:/usr/src/app/logs:cached
-        environment:
-            FLASK_ENV: development
-            MONGO_HOST: 'localhost'
-            MONGO_PORT: 27017
-            MONGO_DBNAME: apitest
-            MONGO_USERNAME: ''
-            MONGO_PASSWORD: ''
-            SECRET_KEY: 'vLn5n8b0MfoOEdZB7wJOapK2d0gFcxhe'
-        links:
+            - ./logs/nginx/:/var/log/nginx:cached
+        depends_on:
+            - python
             - mongodb
+        ports:
+            - 80:80
+        restart: always

@@ -1,8 +1,6 @@
 import os
 from src.resources import users
-from dotenv import load_dotenv
 
-load_dotenv()
 
 config_prod = {
     'MONGO_HOST': os.environ['MONGO_HOST'],

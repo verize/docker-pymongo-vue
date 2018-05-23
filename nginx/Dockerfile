@@ -1,14 +1,11 @@
-FROM alpine:3.6
+FROM nginx:1.14.0-alpine
 
 LABEL maintainer="Gonzalo Plaza <gonzalo@verize.com>"
-
-RUN apk add --no-cache --update nginx
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
 ADD nginx.conf /etc/nginx/
 ADD app.conf /etc/nginx/conf.d/
 
-RUN adduser -D -g '' -G www-data www-data
+RUN addgroup -S www-data && adduser -S -G www-data www-data
 
 CMD ["nginx"]
 
