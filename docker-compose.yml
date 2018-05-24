@@ -1,3 +1,4 @@
+# https://github.com/Koff/alpine-python3-django-uwsgi-nginx 
 # Help: https://www.digitalocean.com/community/questions/flask-nginx-uwsgi-ubuntu-tutorial
 # more help_ https://www.caktusgroup.com/blog/2017/03/14/production-ready-dockerfile-your-python-django-app/
 # more help: https://www.digitalocean.com/community/tutorials/how-to-set-up-uwsgi-and-nginx-to-serve-python-apps-on-ubuntu-14-04
@@ -9,17 +10,13 @@ services:
         ports:
             - "5000:5000"
         volumes:
-            - ./app:/usr/src/app:cached
-            - ./logs/app:/usr/src/app/logs:cached
-            - ./python/app.ini:/usr/src/app/app.ini
-            - ./python/app.service:/etc/systemd/app.service
+            - ./logs/app:/usr/src/app/logs
+            - app_src:/usr/src/app
         restart: always
         env_file:
             - .env
         depends_on:
             - mongodb
-        entrypoint: uwsgi --plugin wsgi,python3 --ini app.ini
-        #entrypoint: uwsgi --plugin wsgi,python3 --ini app.ini
     mongodb:
         image: mongo:latest
         ports:
@@ -37,9 +34,13 @@ services:
             context: ./nginx
         volumes:
             - ./logs/nginx/:/var/log/nginx:cached
+            - app_src:/usr/src/app
         depends_on:
             - python
             - mongodb
         ports:
             - 80:80
         restart: always
+
+volumes:
+    app_src:
