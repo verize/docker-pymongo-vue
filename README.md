@@ -1,10 +1,10 @@
-## PyMongoVue Stack
+## Docker PyMongoVue FullStack
 
-**An open source stack:** Python3 + Flask/Eve framework + MongoDB + Webpack4 + Vue.js-ES6 client
+**An open source FullStack:** Docker Compose + NGINX + WsGI + Python3.6 + Flask/Eve framework + MongoDB + Webpack4 + Vue.js-ES6 client
 
 - RESTful API + Swagger Api Docs
 - Authentication
-- NoSQL Storage
+- NoSQL Storage (MongoDB)
 - Javascript-ES6 client + Webpack
 
 **Author:** Gonzalo Plaza <gonzalo@verize.com>
@@ -13,10 +13,10 @@
 
 1. Clone repository
 ```
-git clone https://github.com/verize/py-mongo-vue.git py-mongo-vue
-cd py-mongo-vue
+git clone https://github.com/verize/docker-pymongo-vue.git docker-pymongo-vue
+cd docker-pymongo-vue
 ```
-2. Add Python Virtual Environment and install dependencies
+2. Add Python Virtual Environment and install dependencies (For development purposes)
 ```
 virtualenv venv
 . venv/bin/activate
@@ -51,13 +51,22 @@ MONGO_PASSWORD=''
 SECRET_KEY=''
 ```
 
-5. Run server:
+5. Run server (development):
 ```
 python server.py
 ```
 
-
 Server will run by default under http://localhost:5000 
+
+### Run Docker Compose Containers
+
+```
+docker-compose pull
+docker-compose build --no-cache
+docker-compose up -d --force-recreate
+```
+
+After containers started, you can access application server through your browser: http://app.local .
 
 ### Licensing:
 
@@ -65,6 +74,7 @@ The code in this project is licensed under [MIT LICENSE](LICENSE). Read file for
 
 ### TODOs:
 
+- Improve Docker integration and deployment
 - Adds Webpack HMR (Hot Module Replacement)
 - Adds SSR (Server Side Rendering) 
 - Improve Authentication process / roles

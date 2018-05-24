@@ -45,12 +45,8 @@ COPY app.ini /usr/src/app/
 COPY app-entrypoint.sh /
 
 RUN chmod 755 /app-entrypoint.sh
-RUN mkdir -p /usr/src/app/build
-RUN touch /usr/src/app/build/index.html
-RUN echo "<h1>hello world</h1>" >> index.html
 
 WORKDIR /usr/src/app/
-
 
 EXPOSE 5000
 CMD ["sh", "/app-entrypoint.sh"]
